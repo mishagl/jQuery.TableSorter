@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <title>Table Sorter/Pagination jQuery plugin demo</title>
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="jquery.tblsort.js"></script>
+        <script type="text/javascript">
+            $(document).ready( function() {
+                $(".sortable").tblsort()
+                              .paginate( { numPerPage: 2 } );
+            }); 
+        </script>
+        
+        <style type="text/css">
+            a {
+                color: #336699;
+                text-decoration: none;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+        
+            table {
+                border-collapse: collapse;
+            }
+        
+            .sortable thead, .sortable tfoot {
+                background-color: #E6E5D3;
+            }
+            
+            .pager {
+                cursor: hand;
+                cursor: pointer;
+                }
+                .pager .page-number {
+                    margin: 0 5px 0 1px;
+                }
+                .pager .page-number.active {
+                    font-weight: bold;
+                }
+        </style>
+    </head>
+    <body>
+        <h2>Table Sorting/Pagination Demo</h2>
+        
+        <div>
+            <table class="sortable">
+                <thead>
+                    <tr>
+                        <th class="sort-alpha">
+                            Name
+                            <span>
+                                <img src="images/bg_w.gif">
+                            </span>
+                        </th>
+                        <th class="sort-numeric">
+                            Age
+                            <span>
+                                <img src="images/bg_w.gif">
+                            </span>
+                        </th>
+                        <th class="sort-link-alpha">
+                            URL
+                            <span>
+                                <img src="images/bg_w.gif">
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <div class="pager">&#160;</div>
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>Mark</td>
+                        <td>25</td>
+                        <td><a href="#">Google</a></td>
+                    </tr>
+                    <tr>
+                        <td>David</td>
+                        <td>37</td>
+                        <td><a href="#">Amazon</a></td>
+                    </tr>
+                    <tr>
+                        <td>Sandy</td>
+                        <td>31</td>
+                        <td><a href="#">Yahoo</a></td>
+                    </tr>
+                    <tr>
+                        <td>Sasha</td>
+                        <td>21</td>
+                        <td><a href="#">Yahoo</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      
+    </body>
+    
+</html>
