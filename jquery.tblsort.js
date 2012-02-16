@@ -112,9 +112,9 @@
             }
 
             var defaults = {
-                imgUnsorted: "/portal/images/table_sort/bg_w.gif",
-                imgDescending: "/portal/images/table_sort/desc_w.gif",
-                imgAscending: "/portal/images/table_sort/asc_w.gif",
+                imgUnsorted: "images/bg_w.gif",
+                imgDescending: "images/desc_w.gif",
+                imgAscending: "images/asc_w.gif",
                 isLtIE8: _isLtIE8
             };
 
