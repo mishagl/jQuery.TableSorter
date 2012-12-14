@@ -44,6 +44,12 @@
                 }).appendTo($pager);
         }
 
+        if($pager.find("span").length > 0) {
+            $pager.addClass("enabled");
+        } 
+        else {
+            $pager.removeClass("enabled");
+        }
         $table.trigger('repaginate');
     }
 
@@ -128,21 +134,24 @@
                     findSortKey = function($cell) {
                         return $cell.text().toUpperCase();
                     };
-                } else if ($(this).is('.sort-numeric')) {
+                } 
+                else if ($(this).is('.sort-numeric')) {
                     findSortKey = function($cell) {
-                        var key = parseFloat($cell.text().toUpperCase().replace(/[-$,]/g, ''));
+                        var key = parseFloat($cell.text().toUpperCase().replace(/[-$,]/g, '').replace(/[^\d\.]/g,''));
                         return isNaN(key) ? -1 : key;
                     };
-                } else if ($(this).is('.sort-mask-number')) {
+                } 
+                else if ($(this).is('.sort-mask-number')) {
                     findSortKey = function($cell) {
-                        var key = parseFloat($cell.text().toUpperCase().replace(/[-X]/g, ''));
+                        var key = parseFloat($cell.text().toUpperCase().replace(/[-X]/g, '').replace(/[^\d\.]/g,''));
                         return isNaN(key) ? -1 : key;
                     };
-                } else if ($(this).is('.sort-mask-date')) {
+                } 
+                else if ($(this).is('.sort-mask-date')) {
                     findSortKey = function($cell) {
                         var t = $cell.text().toUpperCase().replace(/XX/g, '01');
                         if (t.length == 0) {
-                            t = "01/01/1900";
+                            t = "01/01/1800";
                         }
                         else if (t.length == 4) {
                             t = "01/01/" + t;
@@ -150,23 +159,50 @@
                         var key = Date.parse(t);
                         return isNaN(key) ? -1 : key;
                     };
-                } else if ($(this).is('.sort-link-alpha')) {
+                } 
+                else if ($(this).is('.sort-link-alpha')) {
                     findSortKey = function($cell) {
                         return $cell.find('a').text().toUpperCase();
                     };
-                } else if ($(this).is('.sort-date')) {
+                } 
+                else if ($(this).is('.sort-link-date')) {
+                    findSortKey = function($cell) {
+                        var cellVal = $cell.find('a').text().toUpperCase();
+                        
+                        var t = cellVal.toUpperCase().replace(/XX/g, '01');
+                        if (t.length == 0) {
+                            t = "01/01/1800";
+                        }
+                        else if (t.length == 4) {
+                            t = "01/01/" + t;
+                        }
+                        var key = Date.parse(t);
+                        return isNaN(key) ? -1 : key;
+                    };
+                } 
+                else if ($(this).is('.sort-link-numeric')) {
+                    findSortKey = function($cell) {
+                        var cellVal = $cell.find('a').text().toUpperCase();
+                        
+                        var key = parseFloat($cell.text().toUpperCase().replace(/[-$,]/g, '').replace(/[^\d\.]/g,''));
+                        return isNaN(key) ? -1 : key;
+                    };
+                }                
+                else if ($(this).is('.sort-date')) {
                     findSortKey = function($cell) {
 
                         var key = Date.parse($cell.text());
-                        return isNaN(key) ? -1 : key;
+                        return isNaN(key) ? Date.parse("01/01/1800") : key;
                     }
-                } else if ($(this).is('.sort-select')) {
+                } 
+                else if ($(this).is('.sort-select')) {
                     findSortKey = function($cell) {
 
                         var key = $cell.find("select").val();
                         return isNaN(key) ? -1 : key;
                     }
-                } else if ($(this).is('.sort-rank')) {
+                } 
+                else if ($(this).is('.sort-rank')) {
                     findSortKey = function($cell) {
                         var key = $cell.text();
                         return (key == null || key.length == 0) ? "zzzzz" : key;
